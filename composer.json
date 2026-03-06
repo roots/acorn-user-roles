@@ -1,0 +1,30 @@
+{
+  "name": "roots/acorn-user-roles",
+  "type": "package",
+  "description": "Simple user role management for Acorn.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roots Team",
+      "email": "roots@roots.io"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Roots\\AcornUserRoles\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "roots/acorn": "^5.0"
+  },
+  "extra": {
+    "acorn": {
+      "providers": [
+        "Roots\\AcornUserRoles\\AcornUserRolesServiceProvider"
+      ]
+    }
+  }
+}
