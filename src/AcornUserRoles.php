@@ -101,7 +101,7 @@ class AcornUserRoles
     }
 
     /**
-     * Sync an existing role's display name and capabilities to match config.
+     * Sync an existing role's display name and capabilities with config.
      */
     protected function syncRole(string $slug, string $displayName, ?array $capabilities): void
     {
@@ -127,16 +127,6 @@ class AcornUserRoles
                 }
 
                 $role->add_cap($cap, $granted);
-            }
-        }
-
-        foreach ($currentCaps as $cap => $granted) {
-            if (! array_key_exists($cap, $capabilities)) {
-                if ($isAdmin) {
-                    $this->log("Removing administrator capability: {$cap}");
-                }
-
-                $role->remove_cap($cap);
             }
         }
     }

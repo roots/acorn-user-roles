@@ -15,8 +15,8 @@ return [
     | Capabilities can be a simple list (['read', 'edit_posts']) or an
     | associative array (['read' => true, 'edit_posts' => false]).
     |
-    | Config is authoritative — existing roles will be synced to match,
-    | and unlisted capabilities will be removed.
+    | Capabilities defined here are synced on every request. Capabilities
+    | not listed are left untouched (e.g. those added by other plugins).
     |
     */
 

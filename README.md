@@ -59,13 +59,28 @@ Capabilities can also be defined as an associative array:
 
 ### Removing a role
 
+Since roles are stored in the database, removing a role from the config will not delete it. To remove a role, set it to `false`:
+
 ```php
+'librarian' => false,
 'subscriber' => false,
 ```
 
 ### Updating an existing role
 
-Roles defined in config are kept in sync on every request. If you change the capabilities or display name for an existing role, the role will be updated to match.
+Capabilities defined in config are synced on every request. If you change the capabilities or display name for an existing role, the configured values will be applied.
+
+Capabilities not included in the config are left untouched, so capabilities added by other plugins are preserved. To explicitly remove a capability, set it to `false`:
+
+```php
+'editor' => [
+    'capabilities' => [
+        'read' => true,
+        'edit_posts' => true,
+        'delete_posts' => false, // explicitly removed
+    ],
+],
+```
 
 ## Community
 
