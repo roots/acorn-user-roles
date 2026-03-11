@@ -70,21 +70,21 @@ Since roles are stored in the database, removing a role from the config will not
 
 Capabilities defined in config are synced on every request. If you change the capabilities or display name for an existing role, the configured values will be applied.
 
-Capabilities not included in the config are left untouched, so capabilities added by other plugins are preserved. To explicitly remove a capability, set it to `false`:
+Capabilities not included in the config are left untouched, so capabilities added by other plugins are preserved. To explicitly deny a capability, set it to `false`:
 
 ```php
 'editor' => [
     'capabilities' => [
         'read' => true,
         'edit_posts' => true,
-        'delete_posts' => false, // explicitly removed
+        'delete_posts' => false, // explicitly denied
     ],
 ],
 ```
 
 ### Strict mode
 
-If you want the config to be the single source of truth for a role, set `strict` to `true`. Any capabilities not listed in the config will be removed:
+If you want the config to be the single source of truth for a role, set `strict` to `true`. Any capabilities not listed in the config will be removed. In other words: `false` denies a listed capability, while `strict` removes unlisted capabilities.
 
 ```php
 'editor' => [
