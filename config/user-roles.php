@@ -15,8 +15,11 @@ return [
     | Capabilities can be a simple list (['read', 'edit_posts']) or an
     | associative array (['read' => true, 'edit_posts' => false]).
     |
-    | Config is authoritative — existing roles will be synced to match,
-    | and unlisted capabilities will be removed.
+    | Capabilities defined here are synced on every request. Capabilities
+    | not listed are left untouched (e.g. those added by other plugins).
+    |
+    | Set `strict` to `true` on a role to make config authoritative —
+    | any unlisted capabilities will be removed.
     |
     */
 
@@ -25,6 +28,14 @@ return [
     // 'librarian' => [
     //     'display_name' => 'Librarian',
     //     'capabilities' => ['read', 'edit_books', 'publish_books'],
+    // ],
+
+    // 'editor' => [
+    //     'strict' => true,
+    //     'capabilities' => [
+    //         'read' => true,
+    //         'edit_posts' => true,
+    //     ],
     // ],
 
 ];

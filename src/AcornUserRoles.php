@@ -74,8 +74,10 @@ class AcornUserRoles
                 ? $this->normalizeCapabilities($properties['capabilities'])
                 : null;
 
+            $strict = ! empty($properties['strict']);
+
             if (wp_roles()->is_role($slug)) {
-                $this->syncRole($slug, $displayName, $capabilities);
+                $this->syncRole($slug, $displayName, $capabilities, $strict);
 
                 return;
             }
@@ -101,9 +103,9 @@ class AcornUserRoles
     }
 
     /**
-     * Sync an existing role's display name and capabilities to match config.
+     * Sync an existing role's display name and capabilities with config.
      */
-    protected function syncRole(string $slug, string $displayName, ?array $capabilities): void
+    protected function syncRole(string $slug, string $displayName, ?array $capabilities, bool $strict = false): void
     {
         $role = get_role($slug);
         $wpRoles = wp_roles();
@@ -130,13 +132,15 @@ class AcornUserRoles
             }
         }
 
-        foreach ($currentCaps as $cap => $granted) {
-            if (! array_key_exists($cap, $capabilities)) {
-                if ($isAdmin) {
-                    $this->log("Removing administrator capability: {$cap}");
-                }
+        if ($strict) {
+            foreach ($currentCaps as $cap => $granted) {
+                if (! array_key_exists($cap, $capabilities)) {
+                    if ($isAdmin) {
+                        $this->log("Removing administrator capability: {$cap}");
+                    }
 
-                $role->remove_cap($cap);
+                    $role->remove_cap($cap);
+                }
             }
         }
     }
