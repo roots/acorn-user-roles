@@ -82,6 +82,20 @@ Capabilities not included in the config are left untouched, so capabilities adde
 ],
 ```
 
+### Strict mode
+
+If you want the config to be the single source of truth for a role, set `strict` to `true`. Any capabilities not listed in the config will be removed:
+
+```php
+'editor' => [
+    'strict' => true,
+    'capabilities' => [
+        'read' => true,
+        'edit_posts' => true,
+    ],
+],
+```
+
 ## Community
 
 Keep track of development and community news.
