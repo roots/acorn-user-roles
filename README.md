@@ -66,6 +66,8 @@ Since roles are stored in the database, removing a role from the config will not
 'subscriber' => false,
 ```
 
+> **Note:** Setting a role to `false` permanently removes it from the database. Removing the line from config afterward will **not** restore it. To restore a removed role, use WP-CLI: `wp role reset subscriber` (or `wp role reset --all` to restore all default roles).
+
 ### Updating an existing role
 
 Capabilities defined in config are synced on every request. If you change the capabilities or display name for an existing role, the configured values will be applied.

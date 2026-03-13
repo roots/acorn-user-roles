@@ -21,6 +21,15 @@ return [
     | Set `strict` to `true` on a role to make config authoritative —
     | any unlisted capabilities will be removed.
     |
+    | Important: Setting a role to `false` permanently removes it from the
+    | database. Removing the line from config afterward will NOT restore it,
+    | because this package only manages roles explicitly listed here.
+    |
+    | To restore a removed role, use WP-CLI:
+    |
+    |   wp role reset subscriber
+    |   wp role reset --all
+    |
     */
 
     // 'subscriber' => false,
